@@ -7,7 +7,7 @@ from keras.models import load_model
 import joblib
 import numpy as np
 import warnings
-# Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+
 api_key = '30f4a29af2d9c0080c163eb2901ae805'
 
 # Define the URL with latitude and longitude for Jaipur
