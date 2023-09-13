@@ -70,28 +70,33 @@ while True:
         
         # Read the soil moisture value
         moisture_value = read_moisture_value()
-        print('got value')
+        if moisture_value is not None:
+            print('got value')
         # Convert moisture_value to a 2D array
-        moisture_value = np.array([float(moisture_value)]).reshape(-1, 1)
-        print(moisture_value)
+            moisture_value = np.array([float(moisture_value)]).reshape(-1, 1)
+            print(moisture_value)
 
         # Predict the amount of water needed to irrigate the crop
-        prediction = model.predict(moisture_value)[0]
-        print(prediction)
+            prediction = model.predict(moisture_value)[0]
+            print(prediction)
 
         # Decide whether to open or close the valve
-        if prediction > 500 and humidity > 50:
-            valve_state = '1' 
-            print('valve decision sent1') # Assuming the valve state is a string
-        else:
-            valve_state = '0'
-            print('valve decision sent2')
-
+            if prediction > 500 and humidity > 50:
+               valve_state = '1' 
+               print('valve decision sent1') # Assuming the valve state is a string
+            else:
+               valve_state = '0'
+               print('valve decision sent2')
+        
         # Control the valve
-        control_valve(valve_state)
+            control_valve(valve_state)
 
         # Sleep for 1 minute
-        time.sleep(10)
+            time.sleep(10)
+        else:
+            print('moisture is zero')
+     
+
 
     except KeyboardInterrupt:
         break
